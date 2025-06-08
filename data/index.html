@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drug Tests Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Pie chart tooltip */
+    #tooltip {
+      position: absolute;
+      visibility: hidden;
+      padding: 6px 12px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 13px;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    /* Bar chart click pop-up */
+    #tooltip-bar {
+      position: absolute;
+      visibility: hidden;
+      padding: 8px 12px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      font-size: 13px;
+      pointer-events: none;
+      z-index: 1000;
+      max-width: 220px;
+    }
+
+    /* Chart Description Styling */
+    .chart-description p:first-of-type {
+      font-size: 28px;
+      line-height: 1.6;
+      color: #444;
+      max-width: 1800px;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .chart-description p:last-of-type {
+      font-size: 24px;
+      font-style: italic;
+      line-height: 1.6;
+      color: #444;
+      max-width: 1000px;
+      margin: 15px auto;
+      text-align: center;
+    }
+
+    
+
+    .combined-description p {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <h1>Drug Tests Dashboard</h1>
+
+    <!-- KPI Tiles -->
+    <div id="kpi-container"></div>
+
+    <!-- Site Overview Description -->
+<div class="site-description">
+  <p>
+    The Drug Tests Dashboard provides an interactive view of roadside drug testing data across Australia.
+    Users can explore trends in testing activity, positive result rates, and enforcement intensity by jurisdiction and year.
+    The visualisation integrates official government enforcement datasets processed through KNIME workflows.
+    Key performance indicators (KPIs), bar/line trends, and a comparative pie chart allow users to analyse how testing practices and outcomes vary across regions and over time.
+  </p>
+  <p>
+    The goal of this dashboard is to make complex drug testing data more accessible to the public, researchers, and policymakers.
+    It supports informed decision-making about road safety initiatives and highlights areas where testing programs may be more or less intensive.
+    The dashboard is fully dynamic — select filters to customise the view and uncover insights into Australia's roadside drug enforcement landscape.
+  </p>
+</div>
+
+
+    <!-- Chart Title ABOVE chart -->
+    <h2 class="chart-title">Drug Testing Trends in Australia: Tests Conducted vs Positive Rate (2008–2023)</h2>
+
+    <!-- Bar + Line Chart -->
+    <div id="bar-line-chart" class="chart-box"></div>
+
+    <!-- Subtitle (Description) BELOW chart -->
+    <div class="chart-description">
+      <p>
+        This interactive chart visualizes trends in roadside drug testing across Australia from 2008 to 2023.
+        The bars represent the total number of tests conducted each year, while the red line shows the percentage of tests
+        that resulted in a positive detection. Users can explore how testing volumes and detection rates have evolved over time.
+      </p>
+
+      <p>
+        <strong>How to read this chart:</strong>
+        The height of each bar shows the number of drug tests conducted in a given year.
+        The red line displays the corresponding percentage of positive test results.
+        <br><br>
+        You can hover over the bars or points on the line to view exact values.
+        You can also click on a bar to display a detailed pop-up with additional information.
+        The visibility of the line can be toggled using the legend above the chart.
+      </p>
+    </div>
+
+    <!-- Section Title for KPI + Pie -->
+    <h2 style="margin-top: 50px; margin-bottom: 10px; text-align: center;">State-Level Drug Test Summary</h2>
+
+    <!-- Filters BELOW Section Title -->
+    <div id="filters" style="margin: 20px auto 30px auto; max-width: 1400px; text-align: center;"></div>
+
+    <!-- KPI Grid + Pie Chart Layout -->
+    <div class="chart-row">
+      <div class="chart-box" id="kpi-grid-box">
+        <h3>KPI Grid: Summary by Jurisdiction (selected year)</h3>
+        <div id="kpi-grid"></div>
+      </div>
+
+      <div class="chart-box" id="pie-chart">
+        <h3>Pie Chart: Tests per 10,000 Licences by Jurisdiction</h3>
+        <svg></svg>
+        <div class="pie-legend"></div>
+      </div>
+    </div>
+
+    <!-- Combined Description BELOW both charts -->
+    <div class="combined-description">
+      <p>
+        The KPI tiles above provide a summary of roadside drug testing outcomes across all Australian jurisdictions for the selected year.
+        For each state or territory, you can see the total number of drug tests conducted, the number of related charges (where applicable),
+        and the overall positive rate as a percentage of tests. This allows users to quickly compare testing activity and results across regions
+        and understand trends in drug-related driving enforcement.
+      </p>
+
+      <p>
+        This pie chart shows the number of roadside drug tests conducted per 10,000 licensed drivers in each Australian jurisdiction for the selected year.
+        It provides a visual comparison of testing rates across states and territories, allowing users to identify regions with higher or lower testing intensity.
+      </p>
+    </div>
+
+    <!-- Tooltips for interactivity -->
+    <div id="tooltip"></div>
+    <div id="tooltip-bar"></div>
+
+    <!-- Footer with Data Notes -->
+    <div class="footer">
+      <div class="data-notes">
+        <h4>Data Notes</h4>
+        <p>All values are derived from yearly enforcement reports provided by Australian jurisdictions and processed using KNIME workflows.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Modular JavaScript (ES Modules using export/import) -->
+  <script type="module" src="barLineChart.js"></script>
+  <script type="module" src="kpiTiles.js"></script>
+  <script type="module" src="pieChart.js"></script>
+  <script type="module" src="main.js"></script>
+
+</body>
+</html>

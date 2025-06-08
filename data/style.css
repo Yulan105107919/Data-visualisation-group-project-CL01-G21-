@@ -1,0 +1,359 @@
+/* General body styling */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 72px;
+}
+
+.site-description {
+  max-width: 1600px;
+  margin: 20px auto 30px auto;
+  padding: 10px;
+  font-size: 28px;
+  line-height: 1.6;
+  color: #444;
+  text-align: center;
+}
+
+.site-description p {
+  margin-bottom: 15px;
+}
+
+/* Chart Title (h2) */
+h2 {
+  text-align: center;
+  font-size: 38px;
+  margin: 30px 0 10px 0;
+  color: #333;
+}
+
+
+/* KPI Container and KPI Tiles */
+#kpi-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px auto 40px auto;
+  flex-wrap: wrap;
+}
+
+#kpi-container .kpi-tile {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 24px 36px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 32px;
+  min-width: 220px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#kpi-container .kpi-tile strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+#kpi-container .kpi-tile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* Filters */
+#filters {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 25px auto 40px auto;
+  max-width: 1400px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+#filters select {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 18px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#filters select:hover {
+  border-color: #666;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+#filters button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#filters button:hover {
+  background-color: #e2e6ea;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Bar-line chart */
+#bar-line-chart {
+  margin: 20px auto;
+  max-width: 1400px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+#bar-line-chart svg {
+  width: 100%;
+  height: 650px;
+}
+
+/* Bar animation */
+.bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s ease, fill 0.3s ease, y 0.3s ease, height 0.3s ease;
+}
+
+/* Chart row layout */
+.chart-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px auto;
+  max-width: 1400px;
+}
+
+#kpi-grid-box,
+#pie-chart {
+  flex: 1;
+  min-width: 320px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+#kpi-grid-box h3,
+#pie-chart h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* KPI Grid */
+#kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+#kpi-grid > div {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 10px;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeInPop 0.4s forwards;
+  transition: all 0.3s ease;
+}
+
+#kpi-grid > div h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#kpi-grid > div p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Highlight selected KPI */
+.kpi-tile.selected {
+  border: 3px solid #0b5ed7;
+  background-color: #99c2ff !important;
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.kpi-tile.selected h4,
+.kpi-tile.selected p {
+  font-weight: 700;
+}
+
+.kpi-tile:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+@keyframes fadeInPop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* SVG */
+svg {
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: auto;
+  max-height: 650px;
+}
+
+/* Tooltip for bar click */
+#tooltip-bar {
+  position: absolute;
+  visibility: hidden;
+  padding: 8px 12px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 220px;
+}
+
+/* Pie Chart Flex */
+#pie-chart {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+#pie-chart svg {
+  flex: 0 0 auto;
+  max-width: 650px;
+  height: auto;
+  max-height: 650px;
+}
+
+/* Pie Legend */
+#pie-chart .pie-legend {
+  min-width: 250px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 2;
+  color: #222;
+}
+
+#pie-chart .pie-legend div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+#pie-chart .pie-legend div > div {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chart-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #bar-line-chart {
+    max-width: 100%;
+  }
+
+  #bar-line-chart svg {
+    height: 450px;
+  }
+
+  #pie-chart {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #pie-chart svg {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+  }
+
+  #pie-chart .pie-legend {
+    margin-top: 15px;
+    text-align: center;
+  }
+}
+
+
+
+/* Footer */
+.footer {
+  background-color: #f1f3f5;
+  padding: 20px 40px;
+  margin-top: 40px;
+  border-top: 2px solid #ddd;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.footer h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.footer p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.combined-description {
+  max-width: 1600px;
+  margin: 40px auto 50px auto;
+  padding: 10px;
+  font-size: 24px;
+  line-height: 1.6;
+  color: #444;
+  text-align: center;
+}
+
+.combined-description p {
+  margin-bottom: 20px;
+  font-style: italic;
+}
